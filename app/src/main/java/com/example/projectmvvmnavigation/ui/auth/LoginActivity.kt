@@ -2,7 +2,6 @@ package com.example.projectmvvmnavigation.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -12,8 +11,8 @@ import com.example.projectmvvmnavigation.databinding.ActivityLoginBinding
 import com.example.projectmvvmnavigation.ui.home.HomeFragment
 import com.example.projectmvvmnavigation.utils.toast
 
-class LoginActivity() : AppCompatActivity(), AuthListener {
-    private val authViewModel: AuthViewModel by viewModels()
+class LoginActivity : AppCompatActivity(), AuthListener {
+    private val authViewModel: AuthViewModel ?=null
     private var binding: ActivityLoginBinding? = null
 
 
@@ -21,7 +20,7 @@ class LoginActivity() : AppCompatActivity(), AuthListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding?.authViewModel = authViewModel
-        authViewModel.authListener = this
+        authViewModel?.authListener = this
         getUserInfo()
 
 
@@ -32,14 +31,14 @@ class LoginActivity() : AppCompatActivity(), AuthListener {
     }
 
     override fun onSuccess(message: LiveData<LoginResponse?>) {
-        message.observe(this) { loginResponse ->
+        message.observe(this, { loginResponse ->
             if (!loginResponse?.token.isNullOrBlank()) {
                 binding?.authViewModel?.getUserInfo()
             } else {
                 binding?.authViewModel?.isShowProgressBar?.set(false)
                 toast("Login Fail")
             }
-        }
+        })
     }
 
     override fun onFailure(message: String) {
@@ -48,15 +47,19 @@ class LoginActivity() : AppCompatActivity(), AuthListener {
     }
 
     private fun getUserInfo() {
-        binding?.authViewModel?.userLiveData?.observe(this) {
+        binding?.authViewModel?.userLiveData?.observe(this, {
             binding?.authViewModel?.isShowProgressBar?.set(false)
             it?.let {
+                //TODO save data to database
                 val intent = Intent(this, HomeFragment::class.java)
                 startActivity(intent)
             }
-        }
+
+        })
     }
 }
+
+
 
 
 

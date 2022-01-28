@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
     id 'kotlin-kapt'
 
 }
@@ -42,6 +43,7 @@ dependencies {
     def lifecycle_version = "2.5.0-alpha01"
     def arch_version = "2.1.0"
     def kotlin_version="1.6.10"
+    def room_version = "2.3.0"
     def work_version = "2.7.1"
 
     // Kotlin + coroutines
@@ -52,14 +54,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+
 
     implementation 'com.google.dagger:hilt-android:2.40.5'
     kapt 'com.google.dagger:hilt-compiler:2.40.5'
 
-    implementation("androidx.room:room-runtime:$roomVersion")
-    // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     // optional - RxJava2 support for Room
     implementation("androidx.room:room-rxjava2:$roomVersion")
 

@@ -10,7 +10,7 @@ import com.example.projectmvvmnavigation.utils.Coroutines
 
 class AuthViewModel {
     var email: String? = null
-    var password: String? = null
+    var password: String? =null
     var authListener: AuthListener? = null
     var isShowProgressBar = ObservableBoolean(false)
     var userLiveData = MutableLiveData<User?>()
