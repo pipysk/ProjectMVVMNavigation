@@ -3,14 +3,15 @@ package com.example.projectmvvmnavigation.ui.auth
 import android.view.View
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.projectmvvmnavigation.data.entities.User
 import com.example.projectmvvmnavigation.data.repositories.UserRepository
 import com.example.projectmvvmnavigation.utils.Coroutines
 
 
-class AuthViewModel {
-    var email: String? = null
-    var password: String? =null
+class AuthViewModel:ViewModel() {
+    var email: String? = "eve.holt@reqres.in"
+    var password: String? = "cityslicka"
     var authListener: AuthListener? = null
     var isShowProgressBar = ObservableBoolean(false)
     var userLiveData = MutableLiveData<User?>()

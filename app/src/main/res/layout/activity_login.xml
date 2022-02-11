@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:background="#28FFFFFF"
             android:visibility="gone"
-            app:hideProgressBar="@{authViewModel.isShowProgressBar}">
+            app:hideProgressBar="@{authViewModel.isShowProgressBar.get()}">
 
             <ProgressBar
                 android:id="@+id/pbLogin"
