@@ -1,7 +1,5 @@
 package com.example.projectmvvmnavigation.data.network
 
-import com.example.projectmvvmnavigation.data.entities.Users
-import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 

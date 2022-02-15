@@ -1,10 +1,15 @@
 package com.example.projectmvvmnavigation.data.repositories
 
+import com.example.projectmvvmnavigation.data.entities.User
+import com.example.projectmvvmnavigation.data.entities.Users
 import com.example.projectmvvmnavigation.data.network.APIService
 import com.example.projectmvvmnavigation.data.network.SafeAPIService
+import com.example.projectmvvmnavigation.data.response.BaseResponse
 
 class HomeRepository(
-    private val api: APIService
+    val api: APIService
 ) : SafeAPIService() {
-    suspend fun getUsers() = apiRequest { api.getAllUsers() }
+     fun getUsers() = api.getAllUsers()
+
+
 }
