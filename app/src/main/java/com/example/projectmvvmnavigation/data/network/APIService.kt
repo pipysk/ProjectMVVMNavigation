@@ -1,5 +1,6 @@
 package com.example.projectmvvmnavigation.data.network
 
+import com.example.projectmvvmnavigation.data.entities.Data
 import com.example.projectmvvmnavigation.data.entities.User
 import com.example.projectmvvmnavigation.data.entities.Users
 import com.example.projectmvvmnavigation.data.request.LoginRequest
@@ -8,6 +9,7 @@ import com.example.projectmvvmnavigation.data.response.LoginResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
@@ -24,7 +26,7 @@ interface APIService {
     suspend fun getUserInfo(): BaseResponse<User>
 
     @GET("users")
-    fun getAllUsers(): Call<Users>
+    fun getAllUsers(): Response<List<Data>>
 
 
 
